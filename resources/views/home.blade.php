@@ -13,14 +13,14 @@
 <body class="flex flex-col min-h-screen">
 
     <header class="">
-        <div class="container mx-auto px-4 py-4 flex justify-end items-center">
+        <div class="container mx-auto px-4 py-4 flex justify-end items-center space-x-4">
             @if (Route::has('login'))
                 <div class="">
                     <a href="{{ route('login') }}"
                         class="inline-flex items-center px-4 py-2 rounded-full bg-sky-500 hover:bg-sky-700 text-white">Login</a>
                 </div>
             @endif
-
+    
             @if (Route::has('register'))
                 <a href="{{ route('register') }}"
                     class="inline-flex items-center px-4 py-2 rounded-full bg-sky-500 hover:bg-sky-700 text-white">
@@ -29,6 +29,7 @@
             @endif
         </div>
     </header>
+    
 
     <main class="container mx-auto px-4 flex flex-col items-center flex-grow mt-48">
         <div class="text-center">
