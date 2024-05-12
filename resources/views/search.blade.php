@@ -12,18 +12,19 @@
 
 <body class="flex flex-col min-h-screen">
 
-    <header class="py-4">
-        <div class="container mx-auto px-4 flex justify-end items-end">
-            <a href="{{ route('home') }}" class="rounded-full rounded-md bg-sky-500 hover:bg-sky-700 text-white px-4 py-2">Voltar</a>
-        </div>
-    </header>
-
-    <hr class="border-gray-200 my-8">
+    @include('header-default')
 
     <main class="container mx-auto px-4 flex flex-col items-center flex-grow mt-8">
         <h1 class="text-3xl font-bold mb-8">Resultado da Busca</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {{-- TODO: Melhorar a lógica de exibição de profissionais --}}
+            @if ($professionals->count() === 0)
+            <div class="mx-auto flex flex-col items-center">
+                <p class=""><strong>Nenhum profissional encontrado</strong></p>
+            </div>
+            @endif
+
             @foreach ($professionals as $professional)
             <div class="bg-white shadow-md rounded-md p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
                 <h2 class="text-xl font-semibold mb-2">{{ $professional->name }}</h2>
@@ -45,7 +46,7 @@
                 </a>
                 @foreach ($professionals->getUrlRange($professionals->currentPage()-1, $professionals->currentPage()+2) as $page => $url)
                     <a href="{{ $url }}"
-                        class="{{ $page == $professionals->currentPage() ? 'bg-indigo-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50' }} relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring ring-indigo-500 focus:border-indigo-500 transition ease-in-out duration-150">
+                        class="{{ $page == $professionals->currentPage() ? 'bg-sky-500 text-white hover:bg-sky-700' : 'bg-white text-gray-700 hover:bg-gray-200' }} relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring ring-indigo-500 focus:border-indigo-500 transition ease-in-out duration-150">
                         {{ $page }}
                     </a>
                 @endforeach
@@ -59,13 +60,7 @@
         
     </main>
 
-    <hr class="border-gray-200 my-8">
-
-    <footer class="text-center py-4">
-        &copy; {{ date('Y') }} Built with pride by <a href="https://github.com/Bbarbosa7" target="_blank"
-            class="text-indigo-600 hover:underline">Bbarbosa7</a>
-        supported by PHP v{{ PHP_VERSION }}
-    </footer>
+    @include('footer-main')
 
     @vite('resources/js/app.js')
 </body>
