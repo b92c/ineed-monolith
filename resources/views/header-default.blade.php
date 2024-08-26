@@ -1,8 +1,9 @@
 <header class="bg-slate-50">
-    <div class="container mx-auto px-4 flex justify-between items-center">
+    <div class="container mx-auto px-4 flex justify-between items-center h-20 sm:h-24">
         <a href="{{ route('home') }}">
             <figure>
-                <img src="ineed-logo.png" alt="Ineed logo" style="max-height: 10rem; max-width: 10rem">
+                <img src="ineed-logo.png" alt="Ineed logo" 
+                    class="h-8 sm:h-16 max-w-full">
             </figure>
         </a>
         <a href="{{ route('home') }}"

@@ -15,7 +15,13 @@
     @include('header-default')
 
     <main>
-        <h1>Nós somos a revolução</h1>
+        <h1 class="text-3xl text-center font-bold mb pt-4">Sobre nós</h1>
+
+        <div class="text-center">
+            <p>
+                <strong>Ineed</strong> é um site para encontrar os profissionais que você precisa.
+            </p>
+        </div>
     </main>
 
     @include('footer-main')

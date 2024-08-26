@@ -39,11 +39,21 @@
         </div>
         <div class="text-center">
             <form action="{{ route('search') }}" method="GET" class="flex flex-col items-center">
-                <div class="relative flex items-center mb-4">
-                    <input type="text" id="q" name="q"
-                        class="rounded-md border-gray-300 pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
-                        placeholder="Pesquisar pelo serviço">
-                    <button type="submit" class="ml-2 rounded-md bg-sky-500 hover:bg-sky-700 text-white px-4 py-2">
+                <div class="relative flex flex-col items-center mb-4 space-y-4">
+                    <!-- Campo para Serviço ou Profissional -->
+                    <div class="flex items-center">
+                        <input type="text" id="professional" name="professional"
+                            class="rounded-md border-gray-300 pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                            placeholder="Qual profissional você procura?" style="width: 20rem;">
+                    </div>
+                    <!-- Campo para Cidade -->
+                    <div class="flex items-center">
+                        <input type="text" id="city" name="city"
+                            class="rounded-md border-gray-300 pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-sky-500"
+                            placeholder="Qual é a sua cidade?" style="width: 20rem;">
+                    </div>
+                    <!-- Botão de Pesquisa -->
+                    <button type="submit" class="rounded-md bg-sky-500 hover:bg-sky-700 text-white px-4 py-2">
                         Pesquisar
                     </button>
                 </div>
