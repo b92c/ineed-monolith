@@ -1,21 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\FreelanceProfessional;
+use App\Services\FreelanceProfessionalService;
 
 class SearchController extends Controller
 {
-    public function search(Request $request)
+    protected $professionalService;
+
+    public function __construct(FreelanceProfessionalService $professionalService)
     {
-        $query = $request->input('q');
+        $this->professionalService = $professionalService;
+    }
 
-        // Lógica de busca no banco de dados com paginação
-        $professionals = FreelanceProfessional::where('name', 'like', '%' . $query . '%')
-            ->orWhere('profession', 'like', '%' . $query . '%')
-            ->paginate(10);
-
-        return view('search', ['professionals' => $professionals]);
+    public function search(Request $request): mixed
+    {
+        return view('search', ['professionals' => $this->professionalService->search($request)]);
     }
 }

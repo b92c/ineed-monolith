@@ -32,9 +32,11 @@
                 @foreach ($professionals as $professional)
                     <div
                         class="bg-white shadow-md rounded-md p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-                        <h2 class="text-lg sm:text-xl mb-2">{{ $professional->name }}</h2>
+                        <h2 class="text-lg sm:text-xl mb-2">{{ $professional->first_name }} {{ $professional->last_name }}</h2>
                         <p class="text-sm sm:text-base"><strong>Profissão:</strong> {{ $professional->profession }}</p>
+                        {{-- TODO: Abrir phone call --}}
                         <p class="text-sm sm:text-base"><strong>Telefone:</strong> {{ $professional->phone }}</p>
+                        {{-- TODO: Abrir mailto --}}
                         <p class="text-sm sm:text-base"><strong>Email:</strong> {{ $professional->email }}</p>
                     </div>
                 @endforeach

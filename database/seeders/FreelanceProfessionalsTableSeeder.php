@@ -6,7 +6,6 @@ use ReflectionClass;
 use App\Enums\Profession;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 
 class FreelanceProfessionalsTableSeeder extends Seeder
@@ -19,7 +18,7 @@ class FreelanceProfessionalsTableSeeder extends Seeder
         $faker = Faker::create('pt_BR');
         $professions = $this->getProfessions();
 
-        for ($i = 0; $i < 1000; $i++) {
+        for ($i = 0; $i < 5000; $i++) {
             $profession = $faker->randomElement($professions);
             $vipStatus = $faker->randomElement([true, false]);
             $servicePrice = $faker->randomFloat(2, 50, 500);
@@ -33,12 +32,13 @@ class FreelanceProfessionalsTableSeeder extends Seeder
                 'secondaryAddress' => $faker->secondaryAddress,
                 'postcode' => $faker->postcode,
             ];
-            $city = $faker->city;
-            $state = $faker->stateAbbr;
-            $country = $faker->country;
+            $city = $faker->randomNumber(1, 5610);
+            $state = $faker->randomNumber(1, 28);
+            $country = $faker->randomNumber(1, 254);
 
             DB::table('freelance_professionals')->insert([
-                'name' => $faker->name,
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
                 'vip' => $vipStatus,
                 'profession' => $profession,
                 'service_price' => $servicePrice,
