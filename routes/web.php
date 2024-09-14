@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 const PROFILE_PATH = '/profile';
 
@@ -20,6 +21,13 @@ Route::get('advertising', function () {
 })->name('advertising');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+
+// Pre-load cities
+Route::get('/cidades', function () {
+    $jsonData = Storage::get('cidades.json');
+    return response()->json(json_decode($jsonData));
+});
+
 
 // Dashboard routes
 Route::get('/dashboard', function () {
