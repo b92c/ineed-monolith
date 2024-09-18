@@ -7,11 +7,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 class FreelanceProfessionalQuery
 {
-    public function getByProfessionAndCity(string $professionalType, string $city)
+    public function getByProfessionAndCity(string $professionalType, int $city)
     {
         return Capsule::table('freelance_professionals')
         ->where('profession', 'like', '%' . $professionalType . '%')
-        ->where('city', '=', 1)
+        ->where('city', '=', $city)
         ->paginate(10);
+    }
+
+    public function getCityId(string $cityType): int
+    {
+        return Capsule::table('city')->where('name', 'like', '%' . $cityType . '%')->first()->id;
     }
 }
