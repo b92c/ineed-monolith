@@ -6,51 +6,49 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-// Logic to select a city
+// Logic to city select
 document.addEventListener('DOMContentLoaded', function () {
-    const inputCidade = document.getElementById('city');
+    const cityInput = document.getElementById('city');
     const suggestionsContainer = document.getElementById('suggestions');
 
-    inputCidade.addEventListener('input', function () {
-        console.log('dentro do input');
-        
-        const valorDigitado = this.value;
+    cityInput.addEventListener('input', function () {        
+        const typedValue = this.value;
 
-        console.log('valor digitado', valorDigitado);
+        console.log('valor digitado', typedValue);
         
-        if (valorDigitado.length > 1) { // Começa a pesquisa após 2 caracteres
-            fetch('/cidades')
+        if (typedValue.length > 2) {
+            fetch('/city')
                 .then(response => response.json())
-                .then(cidades => {
-                    suggestionsContainer.innerHTML = ''; // Limpa sugestões anteriores
-                    const resultados = cidades.filter(cidade =>
-                        cidade.name.toLowerCase().includes(valorDigitado.toLowerCase())
+                .then(cities => {
+                    suggestionsContainer.innerHTML = '';
+                    const resultados = cities.filter(city =>
+                        city.city.toLowerCase().includes(typedValue.toLowerCase())
                     );
 
-                    resultados.forEach(cidade => {
+                    resultados.forEach(city => {
                         const option = document.createElement('div');
-                        option.textContent = cidade.name;
-                        option.dataset.id = cidade.id; // Armazena o ID da cidade
+                        option.textContent = city.city + ' - ' + city.state;
+                        option.dataset.id = city.id;
                         option.classList.add('suggestion-item', 'p-2', 'cursor-pointer');
 
                         option.addEventListener('click', () => {
-                            selecionarCidade(cidade);
+                            getCity(city);
                         });
 
                         suggestionsContainer.appendChild(option);
                     });
 
-                    suggestionsContainer.classList.toggle('hidden', resultados.length === 0); // Mostrar ou esconder
+                    suggestionsContainer.classList.toggle('hidden', resultados.length === 0);
                 });
         } else {
-            suggestionsContainer.innerHTML = ''; // Limpa sugestões se tiver menos de 2 caracteres
+            suggestionsContainer.innerHTML = '';
             suggestionsContainer.classList.add('hidden');
         }
     });
 
-    function selecionarCidade(cidade) {
-        inputCidade.value = cidade.name; // Atualiza o input com a cidade selecionada
-        suggestionsContainer.innerHTML = ''; // Limpa as opções
+    function getCity(city) {
+        cityInput.value = city.city;
+        suggestionsContainer.innerHTML = '';
         suggestionsContainer.classList.add('hidden');
     }
 });

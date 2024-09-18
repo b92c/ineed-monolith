@@ -26,7 +26,13 @@ class FreelanceProfessionalService
             return [];
         }
 
-        return $this->professionalQuery->getByProfessionAndCity($professionalType, $cityType);
+        $cityId = $this->professionalQuery->getCityId($cityType);
+        
+        if (empty($cityId)) {
+            return [];
+        }
+
+        return $this->professionalQuery->getByProfessionAndCity($professionalType, $cityId);
 
     }
 }

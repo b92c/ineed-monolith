@@ -23,8 +23,8 @@ Route::get('advertising', function () {
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Pre-load cities
-Route::get('/cidades', function () {
-    $jsonData = Storage::get('cidades.json');
+Route::get('/city', function () {
+    $jsonData = Storage::get('cities.json');
     return response()->json(json_decode($jsonData));
 });
 
