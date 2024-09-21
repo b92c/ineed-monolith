@@ -2,17 +2,19 @@
 
 namespace App\Queries;
 
-use App\Models\FreelanceProfessional;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class FreelanceProfessionalQuery
 {
     public function getByProfessionAndCity(string $professionalType, int $city)
     {
-        return Capsule::table('freelance_professionals')
-        ->where('profession', 'like', '%' . $professionalType . '%')
-        ->where('city', '=', $city)
-        ->paginate(10);
+        $query = Capsule::table('freelance_professionals')
+        ->where('city', '=', $city);
+        if (!empty($professionalType)) {
+            $query->where('profession', 'like', '%' . $professionalType . '%');
+        }
+        return $query->paginate(10);
+
     }
 
     public function getCityId(string $cityType): int

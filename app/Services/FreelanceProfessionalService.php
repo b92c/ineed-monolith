@@ -19,18 +19,14 @@ class FreelanceProfessionalService
 
     public function search(Request $request): mixed
     {
-        $professionalType = $request->input('professional');
+        $professionalType = $request->input('professional') ?? '';
         $cityType = $request->input('city');
 
-        if (empty($professionalType) || empty($cityType)) {
+        if (empty($cityType)) {
             return [];
         }
 
         $cityId = $this->professionalQuery->getCityId($cityType);
-        
-        if (empty($cityId)) {
-            return [];
-        }
 
         return $this->professionalQuery->getByProfessionAndCity($professionalType, $cityId);
 
