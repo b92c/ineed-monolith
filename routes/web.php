@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +17,9 @@ Route::get('about', function () {
     return view('about');
 })->name('about');
 
-Route::get('advertising', function () {
-    return view('advertising');
-})->name('advertising');
+// Route::get('advertising', function () {
+//     return view('advertising');
+// })->name('advertising');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
@@ -28,6 +29,8 @@ Route::get('/city', function () {
     return response()->json(json_decode($jsonData));
 });
 
+
+Route::post('destroy', [AuthenticatedSessionController::class, 'destroy'])->name('destroy');
 
 // Dashboard routes
 Route::get('/dashboard', function () {
@@ -40,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete(PROFILE_PATH, [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require_once __DIR__.'/auth.php';
+require_once __DIR__ . '/auth.php';

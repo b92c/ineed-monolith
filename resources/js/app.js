@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         console.log('valor digitado', typedValue);
         
-        if (typedValue.length > 2) {
+        if (typedValue.length > 3) {
             fetch('/city')
                 .then(response => response.json())
                 .then(cities => {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         city.city.toLowerCase().includes(typedValue.toLowerCase())
                     );
 
-                    resultados.forEach(city => {
+                    resultados.slice(0, 5).forEach(city => {
                         const option = document.createElement('div');
                         option.textContent = city.city + ' - ' + city.state;
                         option.dataset.id = city.id;
