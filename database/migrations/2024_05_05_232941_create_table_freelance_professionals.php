@@ -25,10 +25,15 @@ return new class extends Migration
             $table->string('number');
             $table->string('reference_point')->nullable();
             $table->string('zip_code');
-            $table->string('city');
-            $table->string('state', 2);
-            $table->string('country');
+            $table->unsignedBigInteger('city');
+            $table->unsignedBigInteger('state');
+            $table->unsignedBigInteger('country');
             $table->timestamps();
+
+            // Foreign keys
+            $table->foreign('city')->references('id')->on('city')->onDelete('cascade');
+            $table->foreign('state')->references('id')->on('state')->onDelete('cascade');
+            $table->foreign('country')->references('id')->on('country')->onDelete('cascade');
         });
     }
 
@@ -37,6 +42,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('freelance_professionals', function (Blueprint $table) {
+            $table->dropForeign(['city']);
+            $table->dropForeign(['state']);
+            $table->dropForeign(['country']);
+        });
+
         Schema::dropIfExists('freelance_professionals');
     }
 };
