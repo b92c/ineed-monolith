@@ -75,7 +75,6 @@ class RegisteredUserController extends Controller
                 "city" => $request->city,
                 "state" => $request->state,
                 "country" => 1,
-                "user_id" => $user->id,
             ]);
         }
 

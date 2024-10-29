@@ -26,6 +26,5 @@ class FreelanceProfessional extends Model
         "city",
         "state",
         "country",
-        "user_id",
     ];
 }
