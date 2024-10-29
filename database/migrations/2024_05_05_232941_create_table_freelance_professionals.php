@@ -23,7 +23,7 @@ return new class extends Migration
             $table->char('cpf', 11)->unique();
             $table->string('street');
             $table->string('number');
-            $table->string('reference_point')->nullable();
+            $table->string('neighborhood');
             $table->string('zip_code');
             $table->unsignedBigInteger('city');
             $table->unsignedBigInteger('state');

@@ -62,7 +62,7 @@
             </div>
         @endif
 
-        @if (!empty($professionals))
+        @if (!empty($professionals) && $professionals->hasPages())
             <div class="mt-8 flex justify-center w-full">
                 <nav class="flex" aria-label="Pagination">
                     <a href="{{ $professionals->previousPageUrl() }}"
