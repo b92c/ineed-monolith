@@ -20,7 +20,7 @@ class FreelanceProfessional extends Model
         "email",
         "cpf",
         "street",
-        "numer",
+        "number",
         "neighborhood",
         "zip_code",
         "city",

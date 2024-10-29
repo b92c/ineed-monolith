@@ -69,7 +69,7 @@ class RegisteredUserController extends Controller
                 "email" => $request->email,
                 "cpf" => preg_replace('/\D/', '', $request->cpf),
                 "street" => $request->address,
-                "numer" => $request->number,
+                "number" => $request->number,
                 "neighborhood" => $request->neighborhood,
                 "zip_code" => preg_replace('/\D/', '', $request->cep),
                 "city" => $request->city,
