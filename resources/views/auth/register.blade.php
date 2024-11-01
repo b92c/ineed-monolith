@@ -27,18 +27,19 @@
         <!-- Password -->
         <div class="mt-4 relative">
             <x-input-label for="password" :value="__('Senha')" />
-            <x-text-input id="password" class="block mt-1 w-full pr-10" type="password" name="password" required autocomplete="new-password" />
+            <x-text-input id="password" class="block mt-1 w-full pr-10" type="password" name="password" required autocomplete="new-password" minlength="8" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
             <img id="toggle_password" src="{{ asset('eye-off.png') }}" class="absolute right-3 top-9 cursor-pointer w-6 h-6" alt="Mostrar Senha">
             <div id="password_strength" class="mt-2 h-1 w-full bg-gray-200 rounded">
-                <div id="password_strength_bar" class="h-full w-0 rounded"></div>
+            <div id="password_strength_bar" class="h-full w-0 rounded"></div>
             </div>
+            <p id="password_length_error" class="text-red-500 text-sm mt-2" style="display: none;">A senha deve ter no mínimo 8 caracteres.</p>
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4 relative">
             <x-input-label for="password_confirmation" :value="__('Confirmar Senha')" />
-            <x-text-input id="password_confirmation" class="block mt-1 w-full pr-10" type="password" name="password_confirmation" required autocomplete="new-password" />
+            <x-text-input id="password_confirmation" class="block mt-1 w-full pr-10" type="password" name="password_confirmation" required autocomplete="new-password" minlength="8" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             <img id="toggle_password_confirmation" src="{{ asset('eye-off.png') }}" class="absolute right-3 top-9 cursor-pointer w-6 h-6" alt="Mostrar Senha">
         </div>

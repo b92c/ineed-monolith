@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('charges_by', ['hourly', 'daily', 'project']);
             $table->string('phone');
             $table->string('email')->unique();
-            $table->char('cpf', 11)->unique();
+            $table->char('cpf', 11);
             $table->string('street');
             $table->string('number');
             $table->string('neighborhood');

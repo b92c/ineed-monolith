@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cityInput.addEventListener('input', function () {        
         const typedValue = this.value;
-
-        console.log('valor digitado', typedValue);
         
         if (typedValue.length > 3) {
             fetch('/city')
