@@ -12,9 +12,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Services\AddressService;
 
 class RegisteredUserController extends Controller
 {
+
+    protected $addressService;
+
+    public function __construct(AddressService $addressService)
+    {
+        $this->addressService = $addressService;
+    }
+
     /**
      * Display the registration view.
      */
@@ -58,13 +67,17 @@ class RegisteredUserController extends Controller
         ]);
 
         if ($request->register_services === "yes") {
+            $addressQueryResult = $this->addressService->getCityAndStateId($request);
+            $cityId = $addressQueryResult['city'];
+            $stateId = $addressQueryResult['state'];
+            
             FreelanceProfessional::create([
                 "first_name" => $request->first_name,
                 "last_name" => $request->last_name,
                 "vip" => 0,
                 "profession" => $request->profession,
                 "service_price" => 0.00,
-                "charges_by" => "hour",
+                "charges_by" => "hourly",
                 "phone" => preg_replace('/\D/', '', $request->phone),
                 "email" => $request->email,
                 "cpf" => preg_replace('/\D/', '', $request->cpf),
@@ -72,8 +85,8 @@ class RegisteredUserController extends Controller
                 "number" => $request->number,
                 "neighborhood" => $request->neighborhood,
                 "zip_code" => preg_replace('/\D/', '', $request->cep),
-                "city" => $request->city,
-                "state" => $request->state,
+                "city" => $cityId,
+                "state" => $stateId,
                 "country" => 1,
             ]);
         }
