@@ -45,6 +45,12 @@
 
 
     <main class="container mx-auto px-4 flex flex-col items-center flex-grow mt-56">
+        {{-- Contêiner para a mensagem de sucesso --}}
+        <div id="success-message" class="hidden fixed top-4 right-4 bg-green-500 text-white p-4 rounded shadow-lg">
+            <span id="success-message-text"></span>
+            <button id="close-success-message" class="ml-4 text-white font-bold">X</button>
+        </div>
+
         <div class="flex justify-center items-center">
             <figure>
                 <img src="ineed-logo.png" alt="Ineed logo" style="max-height: 10rem; max-width: 10rem">
@@ -82,5 +88,27 @@
 
     @vite('resources/js/app.js')
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var successMessage = '{{ session('success') }}';
+        if (successMessage) {
+            var successMessageContainer = document.getElementById('success-message');
+            var successMessageText = document.getElementById('success-message-text');
+            var closeSuccessMessageButton = document.getElementById('close-success-message');
+
+            successMessageText.textContent = successMessage;
+            successMessageContainer.classList.remove('hidden');
+
+            closeSuccessMessageButton.addEventListener('click', function() {
+                successMessageContainer.classList.add('hidden');
+            });
+
+            setTimeout(function() {
+                successMessageContainer.classList.add('hidden');
+            }, 3000);
+        }
+    });
+</script>
 
 </html>
