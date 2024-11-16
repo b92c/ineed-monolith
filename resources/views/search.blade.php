@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Resultado da Busca - Ineed</title>
+    <title>Resultado da Busca - Encontre já</title>
 
-    @vite('resources/css/app.css')
+    @if (app()->environment('local'))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @else
+        <link rel="stylesheet" href="{{ asset('app.css') }}">
+        <script src="{{ asset('app.js') }}" defer></script>
+    @endif
+
 </head>
 
 <body class="flex flex-col min-h-screen">
@@ -88,8 +94,6 @@
     </main>
 
     @include('footer-main')
-
-    @vite('resources/js/app.js')
 </body>
 
 </html>

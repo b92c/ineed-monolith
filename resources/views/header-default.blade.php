@@ -2,8 +2,8 @@
     <div class="container mx-auto px-4 flex justify-between items-center h-20 sm:h-24">
         <a href="{{ route('home') }}">
             <figure>
-                <img src="ineed-logo.png" alt="Ineed logo" 
-                    class="h-8 sm:h-16 max-w-full">
+                <img src="ineed-logo.png" alt="Encontre Já logo"
+                class="h-16 sm:h-20 max-w-sm px-4 py-4">
             </figure>
         </a>
         <a href="{{ route('home') }}"
